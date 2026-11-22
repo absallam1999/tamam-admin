@@ -132,7 +132,7 @@ export const ForgotPasswordPage: React.FC = () => {
   const [step, setStep] = useState<"phone" | "otp" | "success">("phone");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otp, setOtp] = useState(["", "", "", "", "", ""]);
-  const [isVerified, setIsVerified] = useState(false);
+  const [, setIsVerified] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [fieldError, setFieldError] = useState<string | null>(null);
