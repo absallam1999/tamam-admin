@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <!-- ============================================
+         Document Configuration
+         ============================================ -->
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+
+    <meta
+      name="description"
+      content="منصة تحكم الإدارة من تمام — إدارة المتاجر والسائقين والطلبات والمدن والمناطق والتقارير من مكان واحد."
+    />
+
+    <meta
+      name="keywords"
+      content="تمام, Tamam, إدارة, منصة الإدارة, Admin, إدارة المتاجر, إدارة السائقين, إدارة الطلبات, المدن, المناطق, التقارير"
+    />
+
+    <meta name="author" content="Tamam App" />
+
+    <meta name="application-name" content="Tamam Admin" />
+
+    <meta name="generator" content="Vite" />
+
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <!-- Prevent automatic phone/email detection -->
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- ============================================
+         Theme & Browser UI
+         ============================================ -->
+    <meta name="color-scheme" content="light dark" />
+
+    <meta
+      name="theme-color"
+      content="#047857"
+      media="(prefers-color-scheme: light)"
+    />
+
+    <meta
+      name="theme-color"
+      content="#022c22"
+      media="(prefers-color-scheme: dark)"
+    />
+
+    <!-- ============================================
+         Favicon
+         ============================================ -->
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+
+    <link rel="apple-touch-icon" href="/icon.svg" />
+
+    <!-- ============================================
+         Canonical URL
+         ============================================ -->
+    <link rel="canonical" href="https://admin.tamamapp.net" />
+
+    <!-- ============================================
+         Open Graph / Social Sharing
+         ============================================ -->
+    <meta property="og:type" content="website" />
+
+    <meta property="og:title" content="منصة تحكم الإدارة | Tamam Admin" />
+
+    <meta
+      property="og:description"
+      content="منصة متكاملة لإدارة منظومة تمام — المتاجر والسائقين والطلبات والمدن والمناطق والتقارير."
+    />
+
+    <meta property="og:url" content="https://admin.tamamapp.net" />
+
+    <meta property="og:site_name" content="Tamam" />
+
+    <meta property="og:locale" content="ar_EG" />
+
+    <meta property="og:locale:alternate" content="en_US" />
+
+    <meta
+      property="og:image"
+      content="https://admin.tamamapp.netimages/og-image.png"
+    />
+    <meta property="og:image:alt" content="Tamam Admin Control Platform" />
+
+    <!-- ============================================
+         Twitter / X Card
+         ============================================ -->
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:title" content="منصة تحكم الإدارة | Tamam Admin" />
+
+    <meta
+      name="twitter:description"
+      content="منصة متكاملة لإدارة منظومة تمام."
+    />
+
+    <meta
+      name="twitter:image"
+      content="https://admin.tamamapp.netimages/og-image.png"
+    />
+
+    <!-- ============================================
+         PWA / Web App
+         ============================================ -->
+
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
+    <meta name="apple-mobile-web-app-title" content="Tamam Admin" />
+
+    <!-- ============================================
+         Initial Theme & Language
+         Prevents Flash of Incorrect Theme (FOIT/FOUT)
+         ============================================ -->
+    <script>
+      (() => {
+        try {
+          const THEME_KEY = "admin-theme-preference";
+          const LANGUAGE_KEY = "admin-language";
+
+          const root = document.documentElement;
+
+          /* --------------------------------------------
+             Theme
+             -------------------------------------------- */
+
+          const storedTheme = localStorage.getItem(THEME_KEY);
+
+          const theme =
+            storedTheme === "light" ||
+            storedTheme === "dark" ||
+            storedTheme === "system"
+              ? storedTheme
+              : "system";
+
+          localStorage.setItem(THEME_KEY, theme);
+
+          const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+          const applyTheme = () => {
+            const isDark =
+              theme === "dark" || (theme === "system" && mediaQuery.matches);
+
+            root.classList.toggle("dark", isDark);
+
+            root.style.colorScheme = isDark ? "dark" : "light";
+          };
+
+          applyTheme();
+
+          if (theme === "system") {
+            const handleSystemThemeChange = (event) => {
+              root.classList.toggle("dark", event.matches);
+              root.style.colorScheme = event.matches ? "dark" : "light";
+            };
+
+            if (mediaQuery.addEventListener) {
+              mediaQuery.addEventListener("change", handleSystemThemeChange);
+            } else {
+              // Legacy Safari support
+              mediaQuery.addListener(handleSystemThemeChange);
+            }
+          }
+
+          /* --------------------------------------------
+             Language
+             -------------------------------------------- */
+
+          const storedLanguage = localStorage.getItem(LANGUAGE_KEY);
+
+          const language =
+            storedLanguage === "en" || storedLanguage === "ar"
+              ? storedLanguage
+              : "ar";
+
+          localStorage.setItem(LANGUAGE_KEY, language);
+
+          root.lang = language;
+          root.dir = language === "ar" ? "rtl" : "ltr";
+        } catch {
+
+          document.documentElement.lang = "ar";
+          document.documentElement.dir = "rtl";
+        }
+      })();
+    </script>
+
+    <!-- ============================================
+         Page Title
+         ============================================ -->
+    <title>منصة تحكم الإدارة | Tamam Admin</title>
+  </head>
+
+  <body>
+    <!-- React Application -->
+    <div id="root"></div>
+
+    <!-- Application Entry -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
